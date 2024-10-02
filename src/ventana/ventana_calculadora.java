@@ -43,7 +43,6 @@ public class ventana_calculadora extends JFrame {
 	public float n1;
 	public float n2;
 	public String operador;
-	
 
 	public ventana_calculadora() {
 		setResizable(false);
@@ -145,45 +144,33 @@ public class ventana_calculadora extends JFrame {
 		btnIgual.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				if (txtPantalla.getText().equals("")) {
-					txtPantalla.setText("");
-					n1 = 0;
-					n2 = 0;
-				} else {
-					String valor2 = String.valueOf(n2);
-					if (valor2.contains("")) {
+				n2 = Float.parseFloat(txtPantalla.getText().toString());
+
+				switch (operador) {
+				case "+":
+					txtPantalla.setText(respuestaSinCero(n1 + n2));
+
+					break;
+				case "-":
+					txtPantalla.setText(respuestaSinCero(n1 - n2));
+
+					break;
+				case "*":
+					txtPantalla.setText(respuestaSinCero(n1 * n2));
+
+					break;
+				case "/":
+					if (n2 == 0) {
+						JOptionPane.showMessageDialog(null, "No se puede dividir entre 0.");
 						txtPantalla.setText("");
+						n1 = 0;
 						n2 = 0;
-
 					} else {
-
-						switch (operador) {
-						case "+":
-							txtPantalla.setText(respuestaSinCero(n1 + n2));
-
-							break;
-						case "-":
-							txtPantalla.setText(respuestaSinCero(n1 - n2));
-
-							break;
-						case "*":
-							txtPantalla.setText(respuestaSinCero(n1 * n2));
-
-							break;
-						case "/":
-							if (n2 == 0) {
-								txtPantalla.setText("No se divide entre 0");
-							} else {
-								txtPantalla.setText(respuestaSinCero(n1 / n2));
-							}
-
-							break;
-
-						default:
-							break;
-						}
-
+						txtPantalla.setText(respuestaSinCero(n1 / n2));
 					}
+
+					break;
+
 				}
 
 			}
@@ -353,7 +340,7 @@ public class ventana_calculadora extends JFrame {
 				if (btnTema.getText().equals("N")) {
 					contentPane.setBackground(Color.BLACK);
 					btnTema.setText("B");
-					
+
 					btn0.setBackground(Color.BLACK);
 					btn1.setBackground(Color.BLACK);
 					btn2.setBackground(Color.BLACK);
@@ -364,7 +351,7 @@ public class ventana_calculadora extends JFrame {
 					btn7.setBackground(Color.BLACK);
 					btn8.setBackground(Color.BLACK);
 					btn9.setBackground(Color.BLACK);
-					
+
 					btn0.setForeground(Color.WHITE);
 					btn1.setForeground(Color.WHITE);
 					btn2.setForeground(Color.WHITE);
@@ -375,7 +362,7 @@ public class ventana_calculadora extends JFrame {
 					btn7.setForeground(Color.WHITE);
 					btn8.setForeground(Color.WHITE);
 					btn9.setForeground(Color.WHITE);
-					
+
 					btnMas.setBackground(new Color(0, 128, 128));
 					btnMenos.setBackground(new Color(0, 128, 128));
 					btnMultiplicar.setBackground(new Color(0, 128, 128));
@@ -385,7 +372,7 @@ public class ventana_calculadora extends JFrame {
 					btnLimpiar.setBackground(new Color(0, 128, 128));
 					btnBorrar.setBackground(new Color(0, 128, 128));
 					btnTema.setBackground(new Color(0, 128, 128));
-					
+
 					btnMas.setForeground(Color.BLACK);
 					btnMenos.setForeground(Color.BLACK);
 					btnMultiplicar.setForeground(Color.BLACK);
@@ -395,15 +382,14 @@ public class ventana_calculadora extends JFrame {
 					btnLimpiar.setForeground(Color.BLACK);
 					btnBorrar.setForeground(Color.BLACK);
 					btnTema.setForeground(Color.BLACK);
-					
+
 					txtPantalla.setBackground(Color.GRAY);
 					txtPantalla.setForeground(Color.WHITE);
-					
-					
+
 				} else {
 					contentPane.setBackground(Color.WHITE);
 					btnTema.setText("N");
-					
+
 					btn0.setBackground(Color.WHITE);
 					btn1.setBackground(Color.WHITE);
 					btn2.setBackground(Color.WHITE);
@@ -414,7 +400,7 @@ public class ventana_calculadora extends JFrame {
 					btn7.setBackground(Color.WHITE);
 					btn8.setBackground(Color.WHITE);
 					btn9.setBackground(Color.WHITE);
-					
+
 					btn0.setForeground(Color.BLACK);
 					btn1.setForeground(Color.BLACK);
 					btn2.setForeground(Color.BLACK);
@@ -425,7 +411,7 @@ public class ventana_calculadora extends JFrame {
 					btn7.setForeground(Color.BLACK);
 					btn8.setForeground(Color.BLACK);
 					btn9.setForeground(Color.BLACK);
-					
+
 					btnMas.setBackground(new Color(95, 158, 160));
 					btnMenos.setBackground(new Color(95, 158, 160));
 					btnMultiplicar.setBackground(new Color(95, 158, 160));
@@ -435,7 +421,7 @@ public class ventana_calculadora extends JFrame {
 					btnLimpiar.setBackground(new Color(95, 158, 160));
 					btnBorrar.setBackground(new Color(95, 158, 160));
 					btnTema.setBackground(new Color(95, 158, 160));
-					
+
 					btnMas.setForeground(Color.BLACK);
 					btnMenos.setForeground(Color.BLACK);
 					btnMultiplicar.setForeground(Color.BLACK);
@@ -445,7 +431,7 @@ public class ventana_calculadora extends JFrame {
 					btnLimpiar.setForeground(Color.BLACK);
 					btnBorrar.setForeground(Color.BLACK);
 					btnTema.setForeground(Color.BLACK);
-					
+
 					txtPantalla.setBackground(Color.WHITE);
 					txtPantalla.setForeground(Color.BLACK);
 				}
@@ -456,8 +442,20 @@ public class ventana_calculadora extends JFrame {
 		btnTema.setBackground(new Color(95, 158, 160));
 		btnTema.setBounds(10, 110, 90, 90);
 		contentPane.add(btnTema);
-		
+
 		btnBorrar = new JButton("‹");
+		btnBorrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (txtPantalla.getText().equals("")) {
+
+				} else {
+					String cantidad = txtPantalla.getText().toString();
+					cantidad = cantidad.substring(0, cantidad.length() - 1);
+					txtPantalla.setText(cantidad);
+				}
+
+			}
+		});
 		btnBorrar.setForeground(Color.BLACK);
 		btnBorrar.setFont(new Font("Arial", Font.BOLD, 30));
 		btnBorrar.setBackground(new Color(95, 158, 160));
