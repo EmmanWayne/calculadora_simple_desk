@@ -1,8 +1,7 @@
 package ventana;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
+
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -13,31 +12,33 @@ import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
+import java.awt.event.KeyListener;
 
 public class ventana_calculadora extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField txtPantalla;
-	private JButton btn0;
-	private JButton btn1;
-	private JButton btn2;
-	private JButton btn3;
-	private JButton btn4;
-	private JButton btn5;
-	private JButton btn6;
-	private JButton btn7;
-	private JButton btn8;
-	private JButton btn9;
-	private JButton btnPunto;
-	private JButton btnMas;
-	private JButton btnMenos;
-	private JButton btnMultiplicar;
-	private JButton btnDividir;
-	private JButton btnIgual;
-	private JButton btnLimpiar;
+	public JTextField txtPantalla;
+	public JButton btn0;
+	public JButton btn1;
+	public JButton btn2;
+	public JButton btn3;
+	public JButton btn4;
+	public JButton btn5;
+	public JButton btn6;
+	public JButton btn7;
+	public JButton btn8;
+	public JButton btn9;
+	public JButton btnPunto;
+	public JButton btnMas;
+	public JButton btnMenos;
+	public JButton btnMultiplicar;
+	public JButton btnDividir;
+	public JButton btnIgual;
+	public JButton btnLimpiar;
 	private JButton btnTema;
 	private JButton btnBorrar;
 	public float n1;
@@ -52,18 +53,36 @@ public class ventana_calculadora extends JFrame {
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
 		setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-
 		addWindowListener(new java.awt.event.WindowAdapter() {
 			@Override
 			public void windowClosing(java.awt.event.WindowEvent evt) {
 				close();
 			}
+
 		});
 
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		this.addKeyListener(new KeyListener() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				
+			}
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_0) {
+					txtPantalla.setText(txtPantalla.getText() + "0");
+				}
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+
+			}
+		});
+
 
 		btnMas = new JButton("+");
 		btnMas.setForeground(Color.BLACK);
@@ -332,6 +351,25 @@ public class ventana_calculadora extends JFrame {
 		txtPantalla.setFont(new Font("Arial", Font.PLAIN, 40));
 		txtPantalla.setColumns(10);
 
+		btnBorrar = new JButton("‹");
+		btnBorrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (txtPantalla.getText().equals("")) {
+
+				} else {
+					String cantidad = txtPantalla.getText().toString();
+					cantidad = cantidad.substring(0, cantidad.length() - 1);
+					txtPantalla.setText(cantidad);
+				}
+
+			}
+		});
+		btnBorrar.setForeground(Color.BLACK);
+		btnBorrar.setFont(new Font("Arial", Font.BOLD, 30));
+		btnBorrar.setBackground(new Color(95, 158, 160));
+		btnBorrar.setBounds(210, 110, 90, 90);
+		contentPane.add(btnBorrar);
+
 		btnTema = new JButton("N");
 		btnTema.setForeground(Color.BLACK);
 		btnTema.addActionListener(new ActionListener() {
@@ -443,24 +481,6 @@ public class ventana_calculadora extends JFrame {
 		btnTema.setBounds(10, 110, 90, 90);
 		contentPane.add(btnTema);
 
-		btnBorrar = new JButton("‹");
-		btnBorrar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				if (txtPantalla.getText().equals("")) {
-
-				} else {
-					String cantidad = txtPantalla.getText().toString();
-					cantidad = cantidad.substring(0, cantidad.length() - 1);
-					txtPantalla.setText(cantidad);
-				}
-
-			}
-		});
-		btnBorrar.setForeground(Color.BLACK);
-		btnBorrar.setFont(new Font("Arial", Font.BOLD, 30));
-		btnBorrar.setBackground(new Color(95, 158, 160));
-		btnBorrar.setBounds(210, 110, 90, 90);
-		contentPane.add(btnBorrar);
 	}
 
 	public String respuestaSinCero(float resultado) {
@@ -478,4 +498,5 @@ public class ventana_calculadora extends JFrame {
 				JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
 			System.exit(0);
 	}
+
 }
