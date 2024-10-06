@@ -30,6 +30,7 @@ public class iniciar_calculadora {
 			ventana_calculadora calculadora = new ventana_calculadora();
 			calculadora.setVisible(true);
 			calculadora.setLocationRelativeTo(null);
+			calculadora.txtPantalla.requestFocus();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

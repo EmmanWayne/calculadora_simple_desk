@@ -1,7 +1,6 @@
 package ventana;
 
 import javax.swing.JFrame;
-
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -16,8 +15,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 import java.awt.event.KeyListener;
+import java.awt.event.KeyAdapter;
 
-public class ventana_calculadora extends JFrame {
+public class ventana_calculadora extends JFrame implements KeyListener {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -63,26 +63,6 @@ public class ventana_calculadora extends JFrame {
 			}
 
 		});
-
-		this.addKeyListener(new KeyListener() {
-			@Override
-			public void keyTyped(KeyEvent e) {
-				
-			}
-
-			@Override
-			public void keyPressed(KeyEvent e) {
-				if (e.getKeyCode() == KeyEvent.VK_0) {
-					txtPantalla.setText(txtPantalla.getText() + "0");
-				}
-			}
-
-			@Override
-			public void keyReleased(KeyEvent e) {
-
-			}
-		});
-
 
 		btnMas = new JButton("+");
 		btnMas.setForeground(Color.BLACK);
@@ -159,6 +139,14 @@ public class ventana_calculadora extends JFrame {
 		contentPane.add(btnDividir);
 
 		btnIgual = new JButton("=");
+		btnIgual.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				if (e.getKeyCode() == KeyEvent.VK_NUMPAD0) {
+					txtPantalla.setText(txtPantalla.getText() + "0");
+				}
+			}
+		});
 		btnIgual.setForeground(Color.BLACK);
 		btnIgual.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -197,6 +185,7 @@ public class ventana_calculadora extends JFrame {
 		btnIgual.setBackground(new Color(95, 158, 160));
 		btnIgual.setFont(new Font("Arial", Font.BOLD, 25));
 		btnIgual.setBounds(310, 510, 166, 90);
+
 		contentPane.add(btnIgual);
 
 		btn7 = new JButton("7");
@@ -350,6 +339,7 @@ public class ventana_calculadora extends JFrame {
 		txtPantalla.setHorizontalAlignment(SwingConstants.RIGHT);
 		txtPantalla.setFont(new Font("Arial", Font.PLAIN, 40));
 		txtPantalla.setColumns(10);
+		txtPantalla.addKeyListener(this);
 
 		btnBorrar = new JButton("‹");
 		btnBorrar.addActionListener(new ActionListener() {
@@ -497,6 +487,256 @@ public class ventana_calculadora extends JFrame {
 		if (JOptionPane.showConfirmDialog(rootPane, "¿Desea cerrar la calculadora?", "",
 				JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
 			System.exit(0);
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+
+		int key = e.getKeyCode();
+
+		if (key == KeyEvent.VK_0) {
+
+			txtPantalla.setText(txtPantalla.getText() + "0");
+		}
+
+		if (key == KeyEvent.VK_NUMPAD0) {
+
+			txtPantalla.setText(txtPantalla.getText() + "0");
+		}
+
+		if (key == KeyEvent.VK_1) {
+
+			txtPantalla.setText(txtPantalla.getText() + "1");
+		}
+
+		if (key == KeyEvent.VK_NUMPAD1) {
+
+			txtPantalla.setText(txtPantalla.getText() + "1");
+		}
+
+		if (key == KeyEvent.VK_2) {
+
+			txtPantalla.setText(txtPantalla.getText() + "2");
+		}
+
+		if (key == KeyEvent.VK_NUMPAD2) {
+
+			txtPantalla.setText(txtPantalla.getText() + "2");
+		}
+
+		if (key == KeyEvent.VK_3) {
+
+			txtPantalla.setText(txtPantalla.getText() + "3");
+		}
+
+		if (key == KeyEvent.VK_NUMPAD3) {
+
+			txtPantalla.setText(txtPantalla.getText() + "3");
+		}
+
+		if (key == KeyEvent.VK_4) {
+
+			txtPantalla.setText(txtPantalla.getText() + "4");
+		}
+
+		if (key == KeyEvent.VK_NUMPAD4) {
+
+			txtPantalla.setText(txtPantalla.getText() + "4");
+		}
+
+		if (key == KeyEvent.VK_5) {
+
+			txtPantalla.setText(txtPantalla.getText() + "5");
+		}
+
+		if (key == KeyEvent.VK_NUMPAD5) {
+
+			txtPantalla.setText(txtPantalla.getText() + "5");
+		}
+
+		if (key == KeyEvent.VK_6) {
+
+			txtPantalla.setText(txtPantalla.getText() + "6");
+		}
+
+		if (key == KeyEvent.VK_NUMPAD6) {
+
+			txtPantalla.setText(txtPantalla.getText() + "6");
+		}
+
+		if (key == KeyEvent.VK_7) {
+
+			txtPantalla.setText(txtPantalla.getText() + "7");
+		}
+
+		if (key == KeyEvent.VK_NUMPAD7) {
+
+			txtPantalla.setText(txtPantalla.getText() + "7");
+		}
+
+		if (key == KeyEvent.VK_8) {
+
+			txtPantalla.setText(txtPantalla.getText() + "8");
+		}
+
+		if (key == KeyEvent.VK_NUMPAD8) {
+
+			txtPantalla.setText(txtPantalla.getText() + "8");
+		}
+
+		if (key == KeyEvent.VK_9) {
+
+			txtPantalla.setText(txtPantalla.getText() + "9");
+		}
+
+		if (key == KeyEvent.VK_NUMPAD9) {
+
+			txtPantalla.setText(txtPantalla.getText() + "9");
+		}
+
+		if (key == KeyEvent.VK_ADD) {
+
+			if (txtPantalla.getText().equals("")) {
+
+			} else {
+				n1 = Float.parseFloat(txtPantalla.getText().toString());
+				operador = "+";
+				txtPantalla.setText("");
+			}
+		}
+
+		if (key == KeyEvent.VK_SUBTRACT) {
+
+			if (txtPantalla.getText().equals("")) {
+
+			} else {
+				n1 = Float.parseFloat(txtPantalla.getText().toString());
+				operador = "-";
+				txtPantalla.setText("");
+			}
+		}
+
+		if (key == KeyEvent.VK_MULTIPLY) {
+
+			if (txtPantalla.getText().equals("")) {
+
+			} else {
+				n1 = Float.parseFloat(txtPantalla.getText().toString());
+				operador = "*";
+				txtPantalla.setText("");
+			}
+		}
+
+		if (key == KeyEvent.VK_DIVIDE) {
+
+			if (txtPantalla.getText().equals("")) {
+
+			} else {
+				n1 = Float.parseFloat(txtPantalla.getText().toString());
+				operador = "/";
+				txtPantalla.setText("");
+			}
+		}
+
+		if (key == KeyEvent.VK_DELETE) {
+
+			txtPantalla.setText("");
+			n1 = 0;
+			n2 = 0;
+		}
+
+		if (key == KeyEvent.VK_BACK_SPACE) {
+
+			if (txtPantalla.getText().equals("")) {
+
+			} else {
+				String cantidad = txtPantalla.getText().toString();
+				cantidad = cantidad.substring(0, cantidad.length() - 1);
+				txtPantalla.setText(cantidad);
+			}
+		}
+		
+		if (key == KeyEvent.VK_DECIMAL) {
+
+			if (!txtPantalla.getText().toString().contains(".")) {
+				txtPantalla.setText(txtPantalla.getText() + ".");
+			}
+		}
+
+		if (key == KeyEvent.VK_EQUALS) {
+
+			n2 = Float.parseFloat(txtPantalla.getText().toString());
+
+			switch (operador) {
+			case "+":
+				txtPantalla.setText(respuestaSinCero(n1 + n2));
+
+				break;
+			case "-":
+				txtPantalla.setText(respuestaSinCero(n1 - n2));
+
+				break;
+			case "*":
+				txtPantalla.setText(respuestaSinCero(n1 * n2));
+
+				break;
+			case "/":
+				if (n2 == 0) {
+					JOptionPane.showMessageDialog(null, "No se puede dividir entre 0.");
+					txtPantalla.setText("");
+					n1 = 0;
+					n2 = 0;
+				} else {
+					txtPantalla.setText(respuestaSinCero(n1 / n2));
+				}
+
+				break;
+
+			}
+		}
+
+		if (key == KeyEvent.VK_ENTER) {
+
+			n2 = Float.parseFloat(txtPantalla.getText().toString());
+
+			switch (operador) {
+			case "+":
+				txtPantalla.setText(respuestaSinCero(n1 + n2));
+
+				break;
+			case "-":
+				txtPantalla.setText(respuestaSinCero(n1 - n2));
+
+				break;
+			case "*":
+				txtPantalla.setText(respuestaSinCero(n1 * n2));
+
+				break;
+			case "/":
+				if (n2 == 0) {
+					JOptionPane.showMessageDialog(null, "No se puede dividir entre 0.");
+					txtPantalla.setText("");
+					n1 = 0;
+					n2 = 0;
+				} else {
+					txtPantalla.setText(respuestaSinCero(n1 / n2));
+				}
+
+				break;
+
+			}
+		}
+
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+
 	}
 
 }
