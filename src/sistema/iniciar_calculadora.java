@@ -8,7 +8,6 @@ import ventana.ventana_calculadora;
 public class iniciar_calculadora {
 
 	public static void main(String[] args) {
-
 		try {
 			for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
 				if ("Nimbus".equals(info.getName())) {
@@ -31,6 +30,7 @@ public class iniciar_calculadora {
 			calculadora.setVisible(true);
 			calculadora.setLocationRelativeTo(null);
 			calculadora.txtPantalla.requestFocus();
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
