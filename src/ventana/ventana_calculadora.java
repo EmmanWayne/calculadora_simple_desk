@@ -16,6 +16,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 import java.awt.event.KeyListener;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.JLabel;
 
 public class ventana_calculadora extends JFrame implements KeyListener {
 
@@ -43,8 +44,11 @@ public class ventana_calculadora extends JFrame implements KeyListener {
 	private JButton btnBorrar;
 	public float n1;
 	public float n2;
+	public String num1;
+	public String num2;
 	public String operador;
-	public JTextField txtHistorial;
+	public JTextField txtOperacion;
+	private JLabel lblByEmmanuelDaz;
 
 	public ventana_calculadora() {
 		setResizable(false);
@@ -67,7 +71,7 @@ public class ventana_calculadora extends JFrame implements KeyListener {
 
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
-		scrollPane.setBounds(8, 59, 466, 90);
+		scrollPane.setBounds(8, 65, 466, 84);
 		contentPane.add(scrollPane);
 
 		txtPantalla = new JTextField();
@@ -78,18 +82,6 @@ public class ventana_calculadora extends JFrame implements KeyListener {
 		txtPantalla.setFont(new Font("Arial", Font.BOLD, 40));
 		txtPantalla.setColumns(10);
 		txtPantalla.addKeyListener(this);
-
-		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
-		scrollPane_1.setBounds(8, 11, 466, 37);
-		contentPane.add(scrollPane_1);
-
-		txtHistorial = new JTextField();
-		txtHistorial.setEditable(false);
-		txtHistorial.setFont(new Font("Arial", Font.BOLD, 20));
-		txtHistorial.setHorizontalAlignment(SwingConstants.RIGHT);
-		scrollPane_1.setViewportView(txtHistorial);
-		txtHistorial.setColumns(10);
 
 		btnMas = new JButton("+");
 		btnMas.setForeground(Color.BLACK);
@@ -146,7 +138,12 @@ public class ventana_calculadora extends JFrame implements KeyListener {
 		btnIgual.setBounds(308, 560, 166, 90);
 		btnIgual.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				igual();
+				if (txtPantalla.getText().equals("")) {
+					txtPantalla.requestFocus();
+				}else {
+					igual();
+				}
+				
 			}
 		});
 		contentPane.add(btnIgual);
@@ -409,6 +406,28 @@ public class ventana_calculadora extends JFrame implements KeyListener {
 			}
 		});
 		contentPane.add(btnTema);
+		
+		JLabel lblTitulo = new JLabel("CALCULADORA BÁSICA");
+		lblTitulo.setVerticalAlignment(SwingConstants.BOTTOM);
+		lblTitulo.setHorizontalAlignment(SwingConstants.LEFT);
+		lblTitulo.setFont(new Font("Californian FB", Font.BOLD, 24));
+		lblTitulo.setBounds(10, 10, 278, 33);
+		contentPane.add(lblTitulo);
+		
+				txtOperacion = new JTextField();
+				txtOperacion.setBounds(308, 11, 166, 44);
+				contentPane.add(txtOperacion);
+				txtOperacion.setEditable(false);
+				txtOperacion.setFont(new Font("Arial", Font.BOLD, 20));
+				txtOperacion.setHorizontalAlignment(SwingConstants.CENTER);
+				txtOperacion.setColumns(10);
+				
+				lblByEmmanuelDaz = new JLabel("By Emmanuel Díaz");
+				lblByEmmanuelDaz.setVerticalAlignment(SwingConstants.BOTTOM);
+				lblByEmmanuelDaz.setHorizontalAlignment(SwingConstants.LEFT);
+				lblByEmmanuelDaz.setFont(new Font("Californian FB", Font.PLAIN, 20));
+				lblByEmmanuelDaz.setBounds(10, 39, 278, 24);
+				contentPane.add(lblByEmmanuelDaz);
 
 	}
 
@@ -435,6 +454,7 @@ public class ventana_calculadora extends JFrame implements KeyListener {
 			n1 = Float.parseFloat(txtPantalla.getText().toString());
 			operador = "+";
 			txtPantalla.setText("");
+
 		}
 
 	}
@@ -446,6 +466,7 @@ public class ventana_calculadora extends JFrame implements KeyListener {
 			n1 = Float.parseFloat(txtPantalla.getText().toString());
 			operador = "-";
 			txtPantalla.setText("");
+
 		}
 	}
 
@@ -456,6 +477,7 @@ public class ventana_calculadora extends JFrame implements KeyListener {
 			n1 = Float.parseFloat(txtPantalla.getText().toString());
 			operador = "*";
 			txtPantalla.setText("");
+
 		}
 	}
 
@@ -466,6 +488,7 @@ public class ventana_calculadora extends JFrame implements KeyListener {
 			n1 = Float.parseFloat(txtPantalla.getText().toString());
 			operador = "/";
 			txtPantalla.setText("");
+
 		}
 	}
 
@@ -475,12 +498,21 @@ public class ventana_calculadora extends JFrame implements KeyListener {
 		switch (operador) {
 		case "+":
 			txtPantalla.setText(respuestaSinCero(n1 + n2));
+			num1 = String.valueOf(respuestaSinCero(n1));
+			num2 = String.valueOf(respuestaSinCero(n2));
+			txtOperacion.setText(num1 + " + " + num2);
 			break;
 		case "-":
 			txtPantalla.setText(respuestaSinCero(n1 - n2));
+			num1 = String.valueOf(respuestaSinCero(n1));
+			num2 = String.valueOf(respuestaSinCero(n2));
+			txtOperacion.setText(num1 + " - " + num2);
 			break;
 		case "*":
 			txtPantalla.setText(respuestaSinCero(n1 * n2));
+			num1 = String.valueOf(respuestaSinCero(n1));
+			num2 = String.valueOf(respuestaSinCero(n2));
+			txtOperacion.setText(num1 + " * " + num2);
 			break;
 		case "/":
 			if (n2 == 0) {
@@ -490,6 +522,10 @@ public class ventana_calculadora extends JFrame implements KeyListener {
 				n2 = 0;
 			} else {
 				txtPantalla.setText(respuestaSinCero(n1 / n2));
+				num1 = String.valueOf(respuestaSinCero(n1));
+				num2 = String.valueOf(respuestaSinCero(n2));
+				txtOperacion.setText(num1 + " / " + num2);
+
 			}
 			break;
 		}
@@ -498,7 +534,7 @@ public class ventana_calculadora extends JFrame implements KeyListener {
 	public void limpiar() {
 		txtPantalla.requestFocus();
 		txtPantalla.setText("");
-		txtHistorial.setText("");
+		txtOperacion.setText("");
 		n1 = 0;
 		n2 = 0;
 	}
@@ -516,6 +552,7 @@ public class ventana_calculadora extends JFrame implements KeyListener {
 	public void num0() {
 		txtPantalla.requestFocus();
 		txtPantalla.setText(txtPantalla.getText() + "0");
+
 	}
 
 	public void num1() {
@@ -572,157 +609,157 @@ public class ventana_calculadora extends JFrame implements KeyListener {
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		int key = e.getKeyCode();
 
-		if (key == KeyEvent.VK_0) {
+		char teclado = e.getKeyChar();
 
-			num0();
-		}
-
-		if (key == KeyEvent.VK_NUMPAD0) {
+		if (teclado == KeyEvent.VK_0) {
 
 			num0();
 		}
 
-		if (key == KeyEvent.VK_1) {
+		if (teclado == KeyEvent.VK_NUMPAD0) {
+
+			num0();
+		}
+
+		if (teclado == KeyEvent.VK_1) {
 
 			num1();
 		}
 
-		if (key == KeyEvent.VK_NUMPAD1) {
+		if (teclado == KeyEvent.VK_NUMPAD1) {
 
 			num1();
 		}
 
-		if (key == KeyEvent.VK_2) {
+		if (teclado == KeyEvent.VK_2) {
 
 			num2();
 		}
 
-		if (key == KeyEvent.VK_NUMPAD2) {
+		if (teclado == KeyEvent.VK_NUMPAD2) {
 
 			num2();
 		}
 
-		if (key == KeyEvent.VK_3) {
+		if (teclado == KeyEvent.VK_3) {
 
 			num3();
 		}
 
-		if (key == KeyEvent.VK_NUMPAD3) {
+		if (teclado == KeyEvent.VK_NUMPAD3) {
 
 			num3();
 		}
 
-		if (key == KeyEvent.VK_4) {
+		if (teclado == KeyEvent.VK_4) {
 
 			num4();
 		}
 
-		if (key == KeyEvent.VK_NUMPAD4) {
+		if (teclado == KeyEvent.VK_NUMPAD4) {
 
 			num4();
 		}
 
-		if (key == KeyEvent.VK_5) {
+		if (teclado == KeyEvent.VK_5) {
 
 			num5();
 		}
 
-		if (key == KeyEvent.VK_NUMPAD5) {
+		if (teclado == KeyEvent.VK_NUMPAD5) {
 
 			num5();
 		}
 
-		if (key == KeyEvent.VK_6) {
+		if (teclado == KeyEvent.VK_6) {
 
 			num6();
 		}
 
-		if (key == KeyEvent.VK_NUMPAD6) {
+		if (teclado == KeyEvent.VK_NUMPAD6) {
 
 			num6();
 		}
 
-		if (key == KeyEvent.VK_7) {
+		if (teclado == KeyEvent.VK_7) {
 
 			num7();
 		}
 
-		if (key == KeyEvent.VK_NUMPAD7) {
+		if (teclado == KeyEvent.VK_NUMPAD7) {
 
 			num7();
 		}
 
-		if (key == KeyEvent.VK_8) {
+		if (teclado == KeyEvent.VK_8) {
 
 			num8();
 		}
 
-		if (key == KeyEvent.VK_NUMPAD8) {
+		if (teclado == KeyEvent.VK_NUMPAD8) {
 
 			num8();
 		}
 
-		if (key == KeyEvent.VK_9) {
+		if (teclado == KeyEvent.VK_9) {
 
 			num9();
 		}
 
-		if (key == KeyEvent.VK_NUMPAD9) {
+		if (teclado == KeyEvent.VK_NUMPAD9) {
 
 			num9();
 		}
 
-		if (key == KeyEvent.VK_ADD) {
+		if (teclado == KeyEvent.VK_ADD) {
 
 			sumar();
 		}
 
-		if (key == KeyEvent.VK_SUBTRACT) {
+		if (teclado == KeyEvent.VK_SUBTRACT) {
 			restar();
 		}
 
-		if (key == KeyEvent.VK_MULTIPLY) {
+		if (teclado == KeyEvent.VK_MULTIPLY) {
 			dividir();
 		}
 
-		if (key == KeyEvent.VK_DIVIDE) {
+		if (teclado == KeyEvent.VK_DIVIDE) {
 			dividir();
 		}
 
-		if (key == KeyEvent.VK_DELETE) {
+		if (teclado == KeyEvent.VK_DELETE) {
 			limpiar();
 		}
 
-		if (key == KeyEvent.VK_BACK_SPACE) {
+		if (teclado == KeyEvent.VK_BACK_SPACE) {
 			borrar();
 		}
 
-		if (key == KeyEvent.VK_DECIMAL) {
+		if (teclado == KeyEvent.VK_DECIMAL) {
 			punto();
 		}
 
-		if (key == KeyEvent.VK_EQUALS) {
+		if (teclado == KeyEvent.VK_EQUALS) {
 			igual();
 		}
 
-		if (key == KeyEvent.VK_ENTER) {
+		if (teclado == KeyEvent.VK_ENTER) {
 			igual();
 		}
-		
+
 	}
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		
+		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void keyReleased(KeyEvent e) {
-
+		// TODO Auto-generated method stub
 
 	}
-
 }
