@@ -7,8 +7,11 @@ import javax.swing.border.EmptyBorder;
 import java.awt.Toolkit;
 import java.awt.Color;
 import javax.swing.JTextField;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.Font;
+import java.awt.Image;
+
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -48,13 +51,14 @@ public class ventana_calculadora extends JFrame implements KeyListener {
 	public String num2;
 	public String operador;
 	public JTextField txtOperacion;
-	private JLabel lblByEmmanuelDaz;
+	private JLabel lblLogo;
 
 	public ventana_calculadora() {
 		setResizable(false);
 		setIconImage(Toolkit.getDefaultToolkit()
 				.getImage(ventana_calculadora.class.getResource("/recursos/icono_calculadora.png")));
-		setBounds(100, 100, 500, 700);
+		final ImageIcon logo = new ImageIcon(getClass().getResource("/recursos/icono_calculadora.png"));
+		setBounds(100, 100, 496, 737);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -71,7 +75,7 @@ public class ventana_calculadora extends JFrame implements KeyListener {
 
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
-		scrollPane.setBounds(8, 65, 466, 84);
+		scrollPane.setBounds(8, 104, 466, 84);
 		contentPane.add(scrollPane);
 
 		txtPantalla = new JTextField();
@@ -79,15 +83,15 @@ public class ventana_calculadora extends JFrame implements KeyListener {
 		txtPantalla.setBackground(Color.WHITE);
 		txtPantalla.setEditable(false);
 		txtPantalla.setHorizontalAlignment(SwingConstants.RIGHT);
-		txtPantalla.setFont(new Font("Arial", Font.BOLD, 40));
+		txtPantalla.setFont(new Font("Franklin Gothic Heavy", Font.PLAIN, 50));
 		txtPantalla.setColumns(10);
 		txtPantalla.addKeyListener(this);
 
 		btnMas = new JButton("+");
 		btnMas.setForeground(Color.BLACK);
-		btnMas.setBackground(new Color(95, 158, 160));
-		btnMas.setFont(new Font("Arial", Font.BOLD, 40));
-		btnMas.setBounds(308, 160, 166, 90);
+		btnMas.setBackground(new Color(0, 139, 139));
+		btnMas.setFont(new Font("Franklin Gothic Heavy", Font.PLAIN, 50));
+		btnMas.setBounds(308, 198, 166, 90);
 		btnMas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				sumar();
@@ -97,9 +101,9 @@ public class ventana_calculadora extends JFrame implements KeyListener {
 
 		btnMenos = new JButton("-");
 		btnMenos.setForeground(Color.BLACK);
-		btnMenos.setBackground(new Color(95, 158, 160));
-		btnMenos.setFont(new Font("Arial", Font.BOLD, 40));
-		btnMenos.setBounds(308, 260, 166, 90);
+		btnMenos.setBackground(new Color(0, 139, 139));
+		btnMenos.setFont(new Font("Franklin Gothic Heavy", Font.PLAIN, 50));
+		btnMenos.setBounds(308, 298, 166, 90);
 		btnMenos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				restar();
@@ -109,9 +113,9 @@ public class ventana_calculadora extends JFrame implements KeyListener {
 
 		btnMultiplicar = new JButton("*");
 		btnMultiplicar.setForeground(Color.BLACK);
-		btnMultiplicar.setBackground(new Color(95, 158, 160));
-		btnMultiplicar.setFont(new Font("Arial", Font.BOLD, 40));
-		btnMultiplicar.setBounds(308, 360, 166, 90);
+		btnMultiplicar.setBackground(new Color(0, 139, 139));
+		btnMultiplicar.setFont(new Font("Franklin Gothic Heavy", Font.PLAIN, 50));
+		btnMultiplicar.setBounds(308, 398, 166, 90);
 		btnMultiplicar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				multiplicar();
@@ -121,9 +125,9 @@ public class ventana_calculadora extends JFrame implements KeyListener {
 
 		btnDividir = new JButton("/");
 		btnDividir.setForeground(Color.BLACK);
-		btnDividir.setBackground(new Color(95, 158, 160));
-		btnDividir.setFont(new Font("Arial", Font.BOLD, 40));
-		btnDividir.setBounds(308, 460, 166, 90);
+		btnDividir.setBackground(new Color(0, 139, 139));
+		btnDividir.setFont(new Font("Franklin Gothic Heavy", Font.PLAIN, 45));
+		btnDividir.setBounds(308, 498, 166, 90);
 		btnDividir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dividir();
@@ -133,9 +137,9 @@ public class ventana_calculadora extends JFrame implements KeyListener {
 
 		btnIgual = new JButton("=");
 		btnIgual.setForeground(Color.BLACK);
-		btnIgual.setBackground(new Color(95, 158, 160));
-		btnIgual.setFont(new Font("Arial", Font.BOLD, 40));
-		btnIgual.setBounds(308, 560, 166, 90);
+		btnIgual.setBackground(new Color(0, 139, 139));
+		btnIgual.setFont(new Font("Franklin Gothic Heavy", Font.PLAIN, 50));
+		btnIgual.setBounds(308, 598, 166, 90);
 		btnIgual.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if (txtPantalla.getText().equals("")) {
@@ -150,8 +154,8 @@ public class ventana_calculadora extends JFrame implements KeyListener {
 
 		btn0 = new JButton("0");
 		btn0.setBackground(Color.WHITE);
-		btn0.setFont(new Font("Arial", Font.BOLD, 40));
-		btn0.setBounds(108, 560, 190, 90);
+		btn0.setFont(new Font("Franklin Gothic Heavy", Font.PLAIN, 50));
+		btn0.setBounds(108, 598, 190, 90);
 		btn0.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				num0();
@@ -161,8 +165,8 @@ public class ventana_calculadora extends JFrame implements KeyListener {
 
 		btn1 = new JButton("1");
 		btn1.setBackground(Color.WHITE);
-		btn1.setFont(new Font("Arial", Font.BOLD, 40));
-		btn1.setBounds(8, 460, 90, 90);
+		btn1.setFont(new Font("Franklin Gothic Heavy", Font.PLAIN, 50));
+		btn1.setBounds(8, 498, 90, 90);
 		btn1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				num1();
@@ -172,8 +176,8 @@ public class ventana_calculadora extends JFrame implements KeyListener {
 
 		btn2 = new JButton("2");
 		btn2.setBackground(Color.WHITE);
-		btn2.setFont(new Font("Arial", Font.BOLD, 40));
-		btn2.setBounds(108, 460, 90, 90);
+		btn2.setFont(new Font("Franklin Gothic Heavy", Font.PLAIN, 50));
+		btn2.setBounds(108, 498, 90, 90);
 		btn2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				num2();
@@ -183,8 +187,8 @@ public class ventana_calculadora extends JFrame implements KeyListener {
 
 		btn3 = new JButton("3");
 		btn3.setBackground(Color.WHITE);
-		btn3.setFont(new Font("Arial", Font.BOLD, 40));
-		btn3.setBounds(208, 460, 90, 90);
+		btn3.setFont(new Font("Franklin Gothic Heavy", Font.PLAIN, 50));
+		btn3.setBounds(208, 498, 90, 90);
 		btn3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				num3();
@@ -194,8 +198,8 @@ public class ventana_calculadora extends JFrame implements KeyListener {
 
 		btn4 = new JButton("4");
 		btn4.setBackground(Color.WHITE);
-		btn4.setFont(new Font("Arial", Font.BOLD, 40));
-		btn4.setBounds(8, 360, 90, 90);
+		btn4.setFont(new Font("Franklin Gothic Heavy", Font.PLAIN, 50));
+		btn4.setBounds(8, 398, 90, 90);
 		btn4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				num4();
@@ -205,8 +209,8 @@ public class ventana_calculadora extends JFrame implements KeyListener {
 
 		btn5 = new JButton("5");
 		btn5.setBackground(Color.WHITE);
-		btn5.setFont(new Font("Arial", Font.BOLD, 40));
-		btn5.setBounds(108, 360, 90, 90);
+		btn5.setFont(new Font("Franklin Gothic Heavy", Font.PLAIN, 50));
+		btn5.setBounds(108, 398, 90, 90);
 		btn5.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				num5();
@@ -216,8 +220,8 @@ public class ventana_calculadora extends JFrame implements KeyListener {
 
 		btn6 = new JButton("6");
 		btn6.setBackground(Color.WHITE);
-		btn6.setFont(new Font("Arial", Font.BOLD, 40));
-		btn6.setBounds(208, 360, 90, 90);
+		btn6.setFont(new Font("Franklin Gothic Heavy", Font.PLAIN, 50));
+		btn6.setBounds(208, 398, 90, 90);
 		btn6.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				num6();
@@ -227,8 +231,8 @@ public class ventana_calculadora extends JFrame implements KeyListener {
 
 		btn7 = new JButton("7");
 		btn7.setBackground(Color.WHITE);
-		btn7.setFont(new Font("Arial", Font.BOLD, 40));
-		btn7.setBounds(8, 260, 90, 90);
+		btn7.setFont(new Font("Franklin Gothic Heavy", Font.PLAIN, 50));
+		btn7.setBounds(8, 298, 90, 90);
 		btn7.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				num7();
@@ -238,8 +242,8 @@ public class ventana_calculadora extends JFrame implements KeyListener {
 
 		btn8 = new JButton("8");
 		btn8.setBackground(Color.WHITE);
-		btn8.setFont(new Font("Arial", Font.BOLD, 40));
-		btn8.setBounds(108, 260, 90, 90);
+		btn8.setFont(new Font("Franklin Gothic Heavy", Font.PLAIN, 50));
+		btn8.setBounds(108, 298, 90, 90);
 		btn8.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				num8();
@@ -249,8 +253,8 @@ public class ventana_calculadora extends JFrame implements KeyListener {
 
 		btn9 = new JButton("9");
 		btn9.setBackground(Color.WHITE);
-		btn9.setFont(new Font("Arial", Font.BOLD, 40));
-		btn9.setBounds(208, 260, 90, 90);
+		btn9.setFont(new Font("Franklin Gothic Heavy", Font.PLAIN, 50));
+		btn9.setBounds(208, 298, 90, 90);
 		btn9.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				num9();
@@ -260,9 +264,9 @@ public class ventana_calculadora extends JFrame implements KeyListener {
 
 		btnPunto = new JButton(".");
 		btnPunto.setForeground(Color.BLACK);
-		btnPunto.setBackground(new Color(95, 158, 160));
-		btnPunto.setFont(new Font("Arial", Font.BOLD, 40));
-		btnPunto.setBounds(8, 560, 90, 90);
+		btnPunto.setBackground(new Color(0, 139, 139));
+		btnPunto.setFont(new Font("Franklin Gothic Heavy", Font.PLAIN, 50));
+		btnPunto.setBounds(8, 598, 90, 90);
 		btnPunto.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				punto();
@@ -272,9 +276,9 @@ public class ventana_calculadora extends JFrame implements KeyListener {
 
 		btnLimpiar = new JButton("C");
 		btnLimpiar.setForeground(Color.BLACK);
-		btnLimpiar.setBackground(new Color(95, 158, 160));
-		btnLimpiar.setFont(new Font("Arial", Font.BOLD, 40));
-		btnLimpiar.setBounds(108, 160, 90, 90);
+		btnLimpiar.setBackground(new Color(0, 139, 139));
+		btnLimpiar.setFont(new Font("Franklin Gothic Heavy", Font.PLAIN, 50));
+		btnLimpiar.setBounds(108, 198, 90, 90);
 		btnLimpiar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				limpiar();
@@ -284,9 +288,9 @@ public class ventana_calculadora extends JFrame implements KeyListener {
 
 		btnBorrar = new JButton("‹");
 		btnBorrar.setForeground(Color.BLACK);
-		btnBorrar.setFont(new Font("Arial", Font.BOLD, 40));
-		btnBorrar.setBackground(new Color(95, 158, 160));
-		btnBorrar.setBounds(208, 160, 90, 90);
+		btnBorrar.setFont(new Font("Franklin Gothic Heavy", Font.PLAIN, 80));
+		btnBorrar.setBackground(new Color(0, 139, 139));
+		btnBorrar.setBounds(208, 198, 90, 90);
 		btnBorrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				borrar();
@@ -296,16 +300,16 @@ public class ventana_calculadora extends JFrame implements KeyListener {
 
 		btnTema = new JButton("N");
 		btnTema.setForeground(Color.BLACK);
-		btnTema.setFont(new Font("Arial", Font.BOLD, 40));
-		btnTema.setBackground(new Color(95, 158, 160));
-		btnTema.setBounds(8, 160, 90, 90);
+		btnTema.setFont(new Font("Franklin Gothic Heavy", Font.PLAIN, 50));
+		btnTema.setBackground(new Color(0, 139, 139));
+		btnTema.setBounds(8, 198, 90, 90);
 		btnTema.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
 				txtPantalla.requestFocus();
 
 				if (btnTema.getText().equals("N")) {
-					contentPane.setBackground(Color.BLACK);
+					contentPane.setBackground(Color.lightGray);
 					btnTema.setText("B");
 
 					btn0.setBackground(Color.BLACK);
@@ -340,18 +344,21 @@ public class ventana_calculadora extends JFrame implements KeyListener {
 					btnBorrar.setBackground(new Color(0, 128, 128));
 					btnTema.setBackground(new Color(0, 128, 128));
 
-					btnMas.setForeground(Color.BLACK);
-					btnMenos.setForeground(Color.BLACK);
-					btnMultiplicar.setForeground(Color.BLACK);
-					btnDividir.setForeground(Color.BLACK);
-					btnPunto.setForeground(Color.BLACK);
-					btnIgual.setForeground(Color.BLACK);
-					btnLimpiar.setForeground(Color.BLACK);
-					btnBorrar.setForeground(Color.BLACK);
-					btnTema.setForeground(Color.BLACK);
+					btnMas.setForeground(Color.darkGray);
+					btnMenos.setForeground(Color.darkGray);
+					btnMultiplicar.setForeground(Color.darkGray);
+					btnDividir.setForeground(Color.darkGray);
+					btnPunto.setForeground(Color.darkGray);
+					btnIgual.setForeground(Color.darkGray);
+					btnLimpiar.setForeground(Color.darkGray);
+					btnBorrar.setForeground(Color.darkGray);
+					btnTema.setForeground(Color.darkGray);
 
-					txtPantalla.setBackground(Color.GRAY);
+					txtPantalla.setBackground(Color.darkGray);
 					txtPantalla.setForeground(Color.WHITE);
+					
+					txtOperacion.setBackground(Color.darkGray);
+					txtOperacion.setForeground(Color.WHITE);
 
 				} else {
 					contentPane.setBackground(Color.WHITE);
@@ -379,15 +386,15 @@ public class ventana_calculadora extends JFrame implements KeyListener {
 					btn8.setForeground(Color.BLACK);
 					btn9.setForeground(Color.BLACK);
 
-					btnMas.setBackground(new Color(95, 158, 160));
-					btnMenos.setBackground(new Color(95, 158, 160));
-					btnMultiplicar.setBackground(new Color(95, 158, 160));
-					btnDividir.setBackground(new Color(95, 158, 160));
-					btnPunto.setBackground(new Color(95, 158, 160));
-					btnIgual.setBackground(new Color(95, 158, 160));
-					btnLimpiar.setBackground(new Color(95, 158, 160));
-					btnBorrar.setBackground(new Color(95, 158, 160));
-					btnTema.setBackground(new Color(95, 158, 160));
+					btnMas.setBackground(new Color(0, 139, 139));
+					btnMenos.setBackground(new Color(0, 139, 139));
+					btnMultiplicar.setBackground(new Color(0, 139, 139));
+					btnDividir.setBackground(new Color(0, 139, 139));
+					btnPunto.setBackground(new Color(0, 139, 139));
+					btnIgual.setBackground(new Color(0, 139, 139));
+					btnLimpiar.setBackground(new Color(0, 139, 139));
+					btnBorrar.setBackground(new Color(0, 139, 139));
+					btnTema.setBackground(new Color(0, 139, 139));
 
 					btnMas.setForeground(Color.BLACK);
 					btnMenos.setForeground(Color.BLACK);
@@ -401,33 +408,33 @@ public class ventana_calculadora extends JFrame implements KeyListener {
 
 					txtPantalla.setBackground(Color.WHITE);
 					txtPantalla.setForeground(Color.BLACK);
+					
+					txtOperacion.setBackground(Color.WHITE);
+					txtOperacion.setForeground(Color.BLACK);
 				}
 
 			}
 		});
 		contentPane.add(btnTema);
-		
-		JLabel lblTitulo = new JLabel("CALCULADORA BÁSICA");
-		lblTitulo.setVerticalAlignment(SwingConstants.BOTTOM);
-		lblTitulo.setHorizontalAlignment(SwingConstants.LEFT);
-		lblTitulo.setFont(new Font("Californian FB", Font.BOLD, 24));
-		lblTitulo.setBounds(10, 10, 278, 33);
-		contentPane.add(lblTitulo);
-		
-				txtOperacion = new JTextField();
-				txtOperacion.setBounds(308, 11, 166, 44);
-				contentPane.add(txtOperacion);
-				txtOperacion.setEditable(false);
-				txtOperacion.setFont(new Font("Arial", Font.BOLD, 20));
-				txtOperacion.setHorizontalAlignment(SwingConstants.CENTER);
-				txtOperacion.setColumns(10);
 				
-				lblByEmmanuelDaz = new JLabel("By Emmanuel Díaz");
-				lblByEmmanuelDaz.setVerticalAlignment(SwingConstants.BOTTOM);
-				lblByEmmanuelDaz.setHorizontalAlignment(SwingConstants.LEFT);
-				lblByEmmanuelDaz.setFont(new Font("Californian FB", Font.PLAIN, 20));
-				lblByEmmanuelDaz.setBounds(10, 39, 278, 24);
-				contentPane.add(lblByEmmanuelDaz);
+				lblLogo = new JLabel("");
+				lblLogo.setBounds(8, 10, 90, 84);
+				contentPane.add(lblLogo);
+				final ImageIcon icono = new ImageIcon(
+						logo.getImage().getScaledInstance(lblLogo.getWidth(), lblLogo.getHeight(), Image.SCALE_DEFAULT));
+				lblLogo.setIcon(icono);
+				
+				JScrollPane scrollPane_1 = new JScrollPane();
+				scrollPane_1.setBounds(108, 10, 364, 84);
+				contentPane.add(scrollPane_1);
+				
+						txtOperacion = new JTextField();
+						txtOperacion.setBackground(Color.WHITE);
+						scrollPane_1.setViewportView(txtOperacion);
+						txtOperacion.setEditable(false);
+						txtOperacion.setFont(new Font("Franklin Gothic Heavy", Font.PLAIN, 40));
+						txtOperacion.setHorizontalAlignment(SwingConstants.CENTER);
+						txtOperacion.setColumns(10);
 
 	}
 
