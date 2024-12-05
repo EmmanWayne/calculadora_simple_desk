@@ -20,6 +20,9 @@ import javax.swing.JScrollPane;
 import java.awt.event.KeyListener;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.JLabel;
+import javax.swing.JTextArea;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class ventana_calculadora extends JFrame implements KeyListener {
 
@@ -144,10 +147,10 @@ public class ventana_calculadora extends JFrame implements KeyListener {
 			public void actionPerformed(ActionEvent e) {
 				if (txtPantalla.getText().equals("")) {
 					txtPantalla.requestFocus();
-				}else {
+				} else {
 					igual();
 				}
-				
+
 			}
 		});
 		contentPane.add(btnIgual);
@@ -309,19 +312,19 @@ public class ventana_calculadora extends JFrame implements KeyListener {
 				txtPantalla.requestFocus();
 
 				if (btnTema.getText().equals("N")) {
-					contentPane.setBackground(Color.lightGray);
+					contentPane.setBackground(Color.BLACK);
 					btnTema.setText("B");
 
-					btn0.setBackground(Color.BLACK);
-					btn1.setBackground(Color.BLACK);
-					btn2.setBackground(Color.BLACK);
-					btn3.setBackground(Color.BLACK);
-					btn4.setBackground(Color.BLACK);
-					btn5.setBackground(Color.BLACK);
-					btn6.setBackground(Color.BLACK);
-					btn7.setBackground(Color.BLACK);
-					btn8.setBackground(Color.BLACK);
-					btn9.setBackground(Color.BLACK);
+					btn0.setBackground(Color.DARK_GRAY);
+					btn1.setBackground(Color.DARK_GRAY);
+					btn2.setBackground(Color.DARK_GRAY);
+					btn3.setBackground(Color.DARK_GRAY);
+					btn4.setBackground(Color.DARK_GRAY);
+					btn5.setBackground(Color.DARK_GRAY);
+					btn6.setBackground(Color.DARK_GRAY);
+					btn7.setBackground(Color.DARK_GRAY);
+					btn8.setBackground(Color.DARK_GRAY);
+					btn9.setBackground(Color.DARK_GRAY);
 
 					btn0.setForeground(Color.WHITE);
 					btn1.setForeground(Color.WHITE);
@@ -334,30 +337,30 @@ public class ventana_calculadora extends JFrame implements KeyListener {
 					btn8.setForeground(Color.WHITE);
 					btn9.setForeground(Color.WHITE);
 
-					btnMas.setBackground(new Color(0, 128, 128));
-					btnMenos.setBackground(new Color(0, 128, 128));
-					btnMultiplicar.setBackground(new Color(0, 128, 128));
-					btnDividir.setBackground(new Color(0, 128, 128));
-					btnPunto.setBackground(new Color(0, 128, 128));
-					btnIgual.setBackground(new Color(0, 128, 128));
-					btnLimpiar.setBackground(new Color(0, 128, 128));
-					btnBorrar.setBackground(new Color(0, 128, 128));
-					btnTema.setBackground(new Color(0, 128, 128));
+					btnMas.setBackground(new Color(0, 100, 0));
+					btnMenos.setBackground(new Color(0, 100, 0));
+					btnMultiplicar.setBackground(new Color(0, 100, 0));
+					btnDividir.setBackground(new Color(0, 100, 0));
+					btnPunto.setBackground(new Color(0, 100, 0));
+					btnIgual.setBackground(new Color(0, 100, 0));
+					btnLimpiar.setBackground(new Color(0, 100, 0));
+					btnBorrar.setBackground(new Color(0, 100, 0));
+					btnTema.setBackground(new Color(0, 100, 0));
 
-					btnMas.setForeground(Color.darkGray);
-					btnMenos.setForeground(Color.darkGray);
-					btnMultiplicar.setForeground(Color.darkGray);
-					btnDividir.setForeground(Color.darkGray);
-					btnPunto.setForeground(Color.darkGray);
-					btnIgual.setForeground(Color.darkGray);
-					btnLimpiar.setForeground(Color.darkGray);
-					btnBorrar.setForeground(Color.darkGray);
-					btnTema.setForeground(Color.darkGray);
+					btnMas.setForeground(Color.WHITE);
+					btnMenos.setForeground(Color.WHITE);
+					btnMultiplicar.setForeground(Color.WHITE);
+					btnDividir.setForeground(Color.WHITE);
+					btnPunto.setForeground(Color.WHITE);
+					btnIgual.setForeground(Color.WHITE);
+					btnLimpiar.setForeground(Color.WHITE);
+					btnBorrar.setForeground(Color.WHITE);
+					btnTema.setForeground(Color.WHITE);
 
-					txtPantalla.setBackground(Color.darkGray);
+					txtPantalla.setBackground(Color.DARK_GRAY);
 					txtPantalla.setForeground(Color.WHITE);
-					
-					txtOperacion.setBackground(Color.darkGray);
+
+					txtOperacion.setBackground(Color.DARK_GRAY);
 					txtOperacion.setForeground(Color.WHITE);
 
 				} else {
@@ -408,33 +411,44 @@ public class ventana_calculadora extends JFrame implements KeyListener {
 
 					txtPantalla.setBackground(Color.WHITE);
 					txtPantalla.setForeground(Color.BLACK);
-					
+
 					txtOperacion.setBackground(Color.WHITE);
 					txtOperacion.setForeground(Color.BLACK);
+
 				}
 
 			}
 		});
 		contentPane.add(btnTema);
-				
-				lblLogo = new JLabel("");
-				lblLogo.setBounds(8, 10, 90, 84);
-				contentPane.add(lblLogo);
-				final ImageIcon icono = new ImageIcon(
-						logo.getImage().getScaledInstance(lblLogo.getWidth(), lblLogo.getHeight(), Image.SCALE_DEFAULT));
-				lblLogo.setIcon(icono);
-				
-				JScrollPane scrollPane_1 = new JScrollPane();
-				scrollPane_1.setBounds(108, 10, 364, 84);
-				contentPane.add(scrollPane_1);
-				
-						txtOperacion = new JTextField();
-						txtOperacion.setBackground(Color.WHITE);
-						scrollPane_1.setViewportView(txtOperacion);
-						txtOperacion.setEditable(false);
-						txtOperacion.setFont(new Font("Franklin Gothic Heavy", Font.PLAIN, 40));
-						txtOperacion.setHorizontalAlignment(SwingConstants.CENTER);
-						txtOperacion.setColumns(10);
+
+		lblLogo = new JLabel();
+		lblLogo.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				ventana_acerca_de acercade = new ventana_acerca_de();
+				acercade.setLocationRelativeTo(null);
+				acercade.setVisible(true);
+				dispose();
+			}
+		});
+		lblLogo.setBackground(Color.WHITE);
+		lblLogo.setBounds(8, 10, 90, 84);
+		contentPane.add(lblLogo);
+		final ImageIcon icono = new ImageIcon(
+				logo.getImage().getScaledInstance(lblLogo.getWidth(), lblLogo.getHeight(), Image.SCALE_DEFAULT));
+		lblLogo.setIcon(icono);
+
+		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(108, 10, 364, 84);
+		contentPane.add(scrollPane_1);
+
+		txtOperacion = new JTextField();
+		txtOperacion.setBackground(Color.WHITE);
+		scrollPane_1.setViewportView(txtOperacion);
+		txtOperacion.setEditable(false);
+		txtOperacion.setFont(new Font("Franklin Gothic Heavy", Font.PLAIN, 40));
+		txtOperacion.setHorizontalAlignment(SwingConstants.CENTER);
+		txtOperacion.setColumns(10);
 
 	}
 
