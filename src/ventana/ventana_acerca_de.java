@@ -114,6 +114,7 @@ public class ventana_acerca_de extends JFrame {
 				calculadora.setVisible(true);
 				calculadora.setLocationRelativeTo(null);
 				calculadora.txtPantalla.requestFocus();
+				dispose();
 			}
 		});
 		btnNewButton.setBackground(Color.ORANGE);
